@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="Elogstation.Page1"
+             NavigationPage.HasBackButton="True">
+    <StackLayout VerticalOptions="Start" Padding="10">
+        <Grid HorizontalOptions="CenterAndExpand">
+            <Button x:Name="D_Logs" Clicked="D_Logs_Clicked" FontSize="Small" TextColor="White" Text="Logs" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Button>
+            <Button x:Name="D_Send_Data" Clicked="D_Send_Data_Clicked" FontSize="Small" TextColor="White" Text="Send Data" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"></Button>
+            <Button x:Name="D_Map_View" Clicked="D_Map_View_Clicked" FontSize="Small" TextColor="White" Text="Map View" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2"></Button>
+        </Grid>
+        <Grid x:Name="Logs_Defi" Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.BackgroundColor>
+                <!--White-->
+            </Grid.BackgroundColor>
+            <Label Text="WIFI" FontSize="Medium" Grid.Column="1" Grid.Row="0"/>
+            <Switch Toggled="Switch_Toggled" Grid.Column="2" Grid.Row="0"/>
+            <Label Text="BLUETOOTH" FontSize="Medium" Grid.Column="1" Grid.Row="1"/>
+            <Switch Toggled="Switch_Toggled_1" Grid.Column="2" Grid.Row="1"/>
+        </Grid>
+        <StackLayout x:Name="Send_Data_Defi">
+            <Button Text="Transmit Data over Bluetooth" BackgroundColor="#006064" TextColor="White" FontSize="Medium"></Button>
+            <Button Text="Transmit Data over WIFI" BackgroundColor="#006064" TextColor="White" FontSize="Medium"></Button>
+        </StackLayout>
+        <StackLayout x:Name="Map_View_Defi">
+            <maps:Map 
+                WidthRequest="300"
+                HeightRequest="300"
+                x:Name="MyMap"
+                IsShowingUser="true"
+                HasZoomEnabled="True"
+                MapType="Hybrid"/>
+        </StackLayout>
+        <Label x:Name="Test1"/>
+        <Label x:Name="SentData"/>
+    </StackLayout>
+</ContentPage>

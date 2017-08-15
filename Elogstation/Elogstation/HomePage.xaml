@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Elogstation.HomePage"
+             BackgroundColor="White"
+             Title="ELOGSTATION">
+    <StackLayout BackgroundColor="White"
+                 Padding="30">
+        <Label Text="Username" />
+        <Entry x:Name="Username" 
+               BackgroundColor="LightGray"/>
+        <Label Text="Password" />
+        <Entry x:Name="Password" IsPassword="True"
+               BackgroundColor="LightGray"/>
+        <Button Text="Login" Clicked="Button_Clicked"
+                TextColor="White"
+                BackgroundColor="#1e88e5"/>
+        <Label x:Name="Test" TextColor="Black"/>
+    </StackLayout>
+</ContentPage>
