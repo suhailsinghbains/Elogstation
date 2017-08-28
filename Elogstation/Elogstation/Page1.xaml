@@ -36,10 +36,11 @@
                 WidthRequest="300"
                 HeightRequest="300"
                 x:Name="MyMap"
-                IsShowingUser="true"
+                IsShowingUser="True"
                 HasZoomEnabled="True"
                 MapType="Hybrid"/>
         </StackLayout>
+        <Button x:Name="Button_Clicked"/>
         <Label x:Name="Test1"/>
         <Label x:Name="SentData"/>
     </StackLayout>
