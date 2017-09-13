@@ -8,9 +8,12 @@
                  Padding="30">
         <Label Text="Username" />
         <Entry x:Name="Username" 
+               Text="sricciotti@teppermans.com"
                BackgroundColor="LightGray"/>
         <Label Text="Password" />
-        <Entry x:Name="Password" IsPassword="True"
+        <Entry x:Name="Password" 
+               Text="password"
+               IsPassword="True"
                BackgroundColor="LightGray"/>
         <Button Text="Login" Clicked="Button_Clicked"
                 TextColor="White"

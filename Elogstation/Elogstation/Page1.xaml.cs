@@ -21,7 +21,7 @@ namespace Elogstation
     public partial class Page1 : ContentPage
     {
         WifiManager wifi = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
-        BluetoothManager bluetooth = (BluetoothManager)Android.App.Application.Context.GetSystemService(Context.BluetoothService);
+        //BluetoothManager bluetooth = (BluetoothManager)Android.App.Application.Context.GetSystemService(Context.BluetoothService);
         public Page1(string parameter)
         {
             InitializeComponent();
@@ -36,21 +36,15 @@ namespace Elogstation
             {
                 //Wifi Toggle ON
             }
-            if (bluetooth.Adapter.IsEnabled)
+            /*if (bluetooth.Adapter.IsEnabled)
             {
                 //Bluetooth Toggle ON
-            }
+            }*/
             string T = "eyJleHAiOjE1MDI2MDAwNDIsImlhdCI6MTUwMTk5NTI0MiwiYWxnIjoiSFMyNTYifQ.eyJpZCI6Nn0.-s1xGqei94vva2A79CyMRA8mQA-ZCcfgLvlleRlHeLE";
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             //GPS_Api_CallAsync(T, 51.50336401, -0.1276250, 1, 1, 20);
             //GPS_Location();
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            Button_Clicked.Clicked += Button_Clicked_Clicked;
-        }
-
-        private async void Button_Clicked_Clicked(object sender, EventArgs e)
-        {
-            await GPS_Location();
         }
 
         private void Switch_Toggled(object sender, ToggledEventArgs e)
@@ -60,13 +54,16 @@ namespace Elogstation
         
         private void Switch_Toggled_1(object sender, ToggledEventArgs e)
         {
+            BluetoothManager bluetooth = (BluetoothManager)Android.App.Application.Context.GetSystemService(Context.BluetoothService);
             if (e.Value)
             {
-                bluetooth.Adapter.Enable();
+                //bluetooth.Adapter.Enable();
+                bluetooth.Wait();
+                Test.Text = bluetooth.Adapter.IsEnabled.ToString();
             }
             else
             {
-                bluetooth.Adapter.Disable();
+                //bluetooth.Adapter.Disable();
             }
         }
 
@@ -120,31 +117,6 @@ namespace Elogstation
             var request = await client.PostAsync(RestUrl, content);
             var response = await request.Content.ReadAsStringAsync();
             SentData.Text = response;
-        }
-
-        private async Task GPS_Location()
-        {
-            if (CrossGeolocator.Current.IsGeolocationAvailable)
-            {
-                if (CrossGeolocator.Current.IsGeolocationEnabled)
-                {
-                    var locator = CrossGeolocator.Current;
-                    var position = await locator.GetPositionAsync(TimeSpan.FromMilliseconds(100));
-                    Test1.Text = new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude).ToString();
-                }
-                else
-                {
-                    Test1.Text += "Geolocation is turned off1";
-                    throw new Exception("Geolocation is turned off");
-                    // Geolocation is turned off for the device.
-                }
-            }
-            else
-            {
-                Test1.Text += "Geolocation is turned off";
-                throw new Exception("Geolocation is turned off");
-                // Geolocation not available for device
-            }
         }
     }
 }

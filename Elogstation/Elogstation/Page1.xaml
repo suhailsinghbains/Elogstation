@@ -40,8 +40,7 @@
                 HasZoomEnabled="True"
                 MapType="Hybrid"/>
         </StackLayout>
-        <Button x:Name="Button_Clicked"/>
-        <Label x:Name="Test1"/>
         <Label x:Name="SentData"/>
+        <Label x:Name="Test" />
     </StackLayout>
 </ContentPage>
