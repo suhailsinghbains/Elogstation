@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="Elogstation.Page1"
              NavigationPage.HasBackButton="True">
     <StackLayout VerticalOptions="Start" Padding="10">
@@ -30,15 +29,6 @@
         <StackLayout x:Name="Send_Data_Defi" Padding="15">
             <Button Text="Transmit Data over Bluetooth" BackgroundColor="#006064" TextColor="White" FontSize="Medium"></Button>
             <Button Text="Transmit Data over WIFI" BackgroundColor="#006064" TextColor="White" FontSize="Medium"></Button>
-        </StackLayout>
-        <StackLayout x:Name="Map_View_Defi">
-            <maps:Map 
-                WidthRequest="300"
-                HeightRequest="300"
-                x:Name="MyMap"
-                IsShowingUser="True"
-                HasZoomEnabled="True"
-                MapType="Hybrid"/>
         </StackLayout>
         <Label x:Name="SentData"/>
     </StackLayout>
