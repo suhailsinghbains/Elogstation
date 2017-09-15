@@ -41,6 +41,5 @@
                 MapType="Hybrid"/>
         </StackLayout>
         <Label x:Name="SentData"/>
-        <Label x:Name="Test" />
     </StackLayout>
 </ContentPage>
