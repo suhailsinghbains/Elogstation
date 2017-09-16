@@ -21,8 +21,8 @@ namespace Elogstation
 	public partial class Page1 : ContentPage
 	{
 		WifiManager wifi = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
-		BluetoothManager bluetooth = (BluetoothManager)Android.App.Application.Context.GetSystemService(Context.BluetoothService);
-		public Page1(string parameter)
+        BluetoothManager bluetooth = (BluetoothManager)Android.App.Application.Context.GetSystemService(Context.BluetoothService);
+        public Page1(string parameter,string y)
 		{
 			InitializeComponent();
 
@@ -32,8 +32,16 @@ namespace Elogstation
 			Logs_Defi.IsVisible = true;
 			D_Logs.BackgroundColor = Color.FromHex("#0d47a1");
 			D_Map_View.BackgroundColor = Color.FromHex("#3E88F2");
-			D_Send_Data.BackgroundColor = Color.FromHex("#3E88F2");
-			if (wifi.WifiState.ToString().Equals("Enabled"))
+            D_Send_Data.BackgroundColor = Color.FromHex("#3E88F2");
+            var z = y.Length - 3;
+            y = y.Remove(z, 2);
+            y = y.Substring(11);
+            //y = "eyJpYXQiOjE1MDU1ODYzOTYsImV4cCI6MTUwNjE5MTE5NiwiYWxnIjoiSFMyNTYifQ.eyJpZCI6Nn0.BCGPvSOtUY0HkcjOljZR6OCUj7jeygWIGWxDeoCwWVo";
+            SentData.Text += y;
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            GPS_Api_CallAsync(y.ToString(), 51.503364051, -0.1276250, 1, 1, 20);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            if (wifi.WifiState.ToString().Equals("Enabled"))
 			{
 				//Wifi Toggle ON
 			}
@@ -86,7 +94,7 @@ namespace Elogstation
 
             catch (Exception excep)
             {
-			    SentData.Text += excep.ToString();
+			    //SentData.Text += excep.ToString();
             }
         }
         async Task StartListening()
@@ -106,12 +114,10 @@ namespace Elogstation
 
         private void Current_PositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
         {
-		    Device.BeginInvokeOnMainThread(async () =>
+		    Device.BeginInvokeOnMainThread(() =>
             {
                 var test = e.Position;
                 SentData.Text += "Full: Lat: " + test.Latitude.ToString() + " Long: " + test.Longitude.ToString();
-                string T = "eyJleHAiOjE1MDI2MDAwNDIsImlhdCI6MTUwMTk5NTI0MiwiYWxnIjoiSFMyNTYifQ.eyJpZCI6Nn0.-s1xGqei94vva2A79CyMRA8mQA-ZCcfgLvlleRlHeLE";
-                await GPS_Api_CallAsync(T, test.Latitude, test.Longitude, 1, 1, 20);
             });
         }
 
@@ -134,27 +140,28 @@ namespace Elogstation
 		    D_Logs.BackgroundColor = Color.FromHex("#3E88F2");
 		    D_Send_Data.BackgroundColor = Color.FromHex("#3E88F2");
 	    }
-        private async Task GPS_Api_CallAsync(string Token, double Latitude, double Longitude, int User_id, int Company_id, int Rpm)
-	    {
-		    var json = JsonConvert.SerializeObject(new
-		    {
-			    token = Token,
-	    		user_id = User_id,
-		    	company_id = Company_id,
-		    	latitude = Latitude,
-		    	longitude = Longitude,
-		    	rpm = Rpm
-		    });
-		    string data = json.ToString();
-		    HttpClient client = new HttpClient(new NativeMessageHandler())
-		    {
-			    MaxResponseContentBufferSize = 256000
-		    };
-		    var RestUrl = "http://54.208.49.250/api/eld";
-		    var content = new StringContent(data, Encoding.UTF8, "application/json");
-		    var request = await client.PostAsync(RestUrl, content);
-		    var response = await request.Content.ReadAsStringAsync();
-		    SentData.Text = response;
-	    }
+        private async Task GPS_Api_CallAsync(string T, double Latitude, double Longitude, int User_id, int Company_id, int Rpm)
+        {
+            var json = JsonConvert.SerializeObject(new
+            {
+                token = T,
+                user_id = User_id,
+                company_id = Company_id,
+                latitude = Latitude,
+                longitude = Longitude,
+                rpm = Rpm
+            });
+            string data = json.ToString();
+            HttpClient client = new HttpClient(new NativeMessageHandler())
+            {
+                MaxResponseContentBufferSize = 256000
+            };
+            var RestUrl = "http://54.208.49.250/api/eld";
+            var content = new StringContent(data, Encoding.UTF8, "application/json");
+            var request = await client.PostAsync(RestUrl, content);
+            var response = await request.Content.ReadAsStringAsync();
+            SentData.Text += response;
+            SentData.Text += T;
+        }
     }
 }

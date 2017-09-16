@@ -32,6 +32,7 @@
             <Button Text="Transmit Data over WIFI" BackgroundColor="#006064" TextColor="White" FontSize="Medium"></Button>
         </StackLayout>
         <StackLayout x:Name="Map_View_Defi">
+            <!--
             <maps:Map 
                 WidthRequest="300"
                 HeightRequest="300"
@@ -39,6 +40,7 @@
                 IsShowingUser="True"
                 HasZoomEnabled="True"
                 MapType="Hybrid"/>
+             -->
         </StackLayout>
         <Label x:Name="SentData"/>
     </StackLayout>

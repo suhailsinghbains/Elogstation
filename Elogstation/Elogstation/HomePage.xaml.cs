@@ -40,7 +40,7 @@ namespace Elogstation
             {
                 Test.Text = response;
                 await Task.Delay(1000);
-                await Navigation.PushAsync(new Page1(Username));
+                await Navigation.PushAsync(new Page1(Username, response.ToString()));
             }
             else
             {
