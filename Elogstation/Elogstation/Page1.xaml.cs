@@ -33,11 +33,10 @@ namespace Elogstation
 			D_Logs.BackgroundColor = Color.FromHex("#0d47a1");
 			D_Map_View.BackgroundColor = Color.FromHex("#3E88F2");
             D_Send_Data.BackgroundColor = Color.FromHex("#3E88F2");
-            var z = y.Length - 3;
-            y = y.Remove(z, 2);
+            var z = y.Length - 1;
+            y = y.Remove(z, 1);
             y = y.Substring(11);
             //y = "eyJpYXQiOjE1MDU1ODYzOTYsImV4cCI6MTUwNjE5MTE5NiwiYWxnIjoiSFMyNTYifQ.eyJpZCI6Nn0.BCGPvSOtUY0HkcjOljZR6OCUj7jeygWIGWxDeoCwWVo";
-            SentData.Text += y;
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             GPS_Api_CallAsync(y.ToString(), 51.503364051, -0.1276250, 1, 1, 20);
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
@@ -94,7 +93,7 @@ namespace Elogstation
 
             catch (Exception excep)
             {
-			    //SentData.Text += excep.ToString();
+			    SentData.Text += excep.ToString();
             }
         }
         async Task StartListening()
@@ -161,7 +160,6 @@ namespace Elogstation
             var request = await client.PostAsync(RestUrl, content);
             var response = await request.Content.ReadAsStringAsync();
             SentData.Text += response;
-            SentData.Text += T;
         }
     }
 }
