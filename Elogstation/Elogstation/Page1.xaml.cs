@@ -20,8 +20,10 @@ namespace Elogstation
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Page1 : ContentPage
 	{
+        Int32 i = 1;
 		WifiManager wifi = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
         BluetoothManager bluetooth = (BluetoothManager)Android.App.Application.Context.GetSystemService(Context.BluetoothService);
+        string Y;
         public Page1(string parameter,string y)
 		{
 			InitializeComponent();
@@ -38,7 +40,7 @@ namespace Elogstation
             y = y.Substring(11);
             //y = "eyJpYXQiOjE1MDU1ODYzOTYsImV4cCI6MTUwNjE5MTE5NiwiYWxnIjoiSFMyNTYifQ.eyJpZCI6Nn0.BCGPvSOtUY0HkcjOljZR6OCUj7jeygWIGWxDeoCwWVo";
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            GPS_Api_CallAsync(y.ToString(), 51.503364051, -0.1276250, 1, 1, 20);
+            //GPS_Api_CallAsync(y.ToString(), 51.503364051, -0.1276250, 1, 1, 20);
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             if (wifi.WifiState.ToString().Equals("Enabled"))
 			{
@@ -50,9 +52,25 @@ namespace Elogstation
                 //Bluetooth Toggle ON
             }
 			*/
+            Y = y;
+            StartTimer();
         }
 
-		private void Switch_Toggled(object sender, ToggledEventArgs e)
+        private void StartTimer()
+        {
+            Device.StartTimer(System.TimeSpan.FromSeconds(10), () =>
+            {
+                Device.BeginInvokeOnMainThread(UpdateUserDataAsync);
+                return true;
+            });
+        }
+
+        private async void UpdateUserDataAsync()
+        {
+            await GPS_Api_CallAsync(Y.ToString(), 51.503364051, -0.1276250, 1, 1, 20);
+        }
+
+        private void Switch_Toggled(object sender, ToggledEventArgs e)
         {
 		    wifi.SetWifiEnabled(e.Value);
         }
@@ -159,7 +177,16 @@ namespace Elogstation
             var content = new StringContent(data, Encoding.UTF8, "application/json");
             var request = await client.PostAsync(RestUrl, content);
             var response = await request.Content.ReadAsStringAsync();
-            SentData.Text += response;
+            if (request.IsSuccessStatusCode)
+            {
+                CalledCounter.Text = "Api Called " + i + " times";
+                TimeStamp.Text = "Last Called at " + DateTime.Now.ToLocalTime().ToString();
+                i++;
+            }
+            else
+            {
+                CalledCounter.Text = "Something went wrong" + request.IsSuccessStatusCode.ToString();
+            }
         }
     }
 }

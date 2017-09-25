@@ -43,5 +43,7 @@
              -->
         </StackLayout>
         <Label x:Name="SentData"/>
+        <Label x:Name="CalledCounter"/>
+        <Label x:Name="TimeStamp"/>
     </StackLayout>
 </ContentPage>
