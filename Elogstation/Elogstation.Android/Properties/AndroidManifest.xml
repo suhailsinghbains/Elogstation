@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.xamarin.docs.android.mapsdemo" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.Elogstation" android:installLocation="auto" android:versionCode="1">
 	<uses-sdk android:minSdkVersion="13" android:targetSdkVersion="24" />
 	<uses-permission android:name="com.deg.blubcnmobl.droid.permission.MAPS_RECEIVE" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
