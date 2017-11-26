@@ -6,10 +6,15 @@
              NavigationPage.HasBackButton="True">
     <StackLayout VerticalOptions="Start" Padding="10">
         <Grid HorizontalOptions="CenterAndExpand">
-            <Button x:Name="D_Logs" Clicked="D_Logs_Clicked" FontSize="Small" TextColor="White" Text="Logs" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Button>
-            <Button x:Name="D_Send_Data" Clicked="D_Send_Data_Clicked" FontSize="Small" TextColor="White" Text="Send Data" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"></Button>
-            <Button x:Name="D_Map_View" Clicked="D_Map_View_Clicked" FontSize="Small" TextColor="White" Text="Map View" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2"></Button>
+            <Button x:Name="D_Device_Login" Clicked="D_Device_Login_ClickedAsync" FontSize="Small" TextColor="White" Text="Device Login" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Button>
+            <Button x:Name="D_Logs" Clicked="D_Logs_Clicked" FontSize="Small" TextColor="White" Text="Logs" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"></Button>
+            <Button x:Name="D_Send_Data" Clicked="D_Send_Data_Clicked" FontSize="Small" TextColor="White" Text="Send Data" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2"></Button>
+            <Button x:Name="D_Map_View" Clicked="D_Map_View_Clicked" FontSize="Small" TextColor="White" Text="Map View" Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2"></Button>
         </Grid>
+        <StackLayout x:Name="Device_Login_Defi" Padding="15">
+            <Label x:Name="Test">
+            </Label>            
+        </StackLayout>
         <Grid x:Name="Logs_Defi" Padding="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />

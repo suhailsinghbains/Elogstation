@@ -51,7 +51,8 @@ namespace Elogstation
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await SaveTodoItemAsync(Username.Text, Password.Text);
+            await Navigation.PushAsync(new Page1(Username.ToString(), Password.ToString()));
+            //await SaveTodoItemAsync(Username.Text, Password.Text);
         }
     }
 }

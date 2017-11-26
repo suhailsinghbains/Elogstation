@@ -22,7 +22,7 @@ namespace Elogstation
 	{
         Int32 i = 1;
 		WifiManager wifi = (WifiManager)Android.App.Application.Context.GetSystemService(Context.WifiService);
-        BluetoothManager bluetooth = (BluetoothManager)Android.App.Application.Context.GetSystemService(Context.BluetoothService);
+        //BluetoothManager bluetooth = (BluetoothManager)Android.App.Application.Context.GetSystemService(Context.BluetoothService);
         string Y;
         public Page1(string parameter,string y)
 		{
@@ -31,8 +31,10 @@ namespace Elogstation
 			this.Title = "Hi" + " " + parameter;
 			Send_Data_Defi.IsVisible = false;
 			Map_View_Defi.IsVisible = false;
-			Logs_Defi.IsVisible = true;
-			D_Logs.BackgroundColor = Color.FromHex("#0d47a1");
+			Logs_Defi.IsVisible = false;
+            Device_Login_Defi.IsVisible = true;
+            D_Device_Login.BackgroundColor = Color.FromHex("#0d47a1");
+            D_Logs.BackgroundColor = Color.FromHex("#3E88F2");
 			D_Map_View.BackgroundColor = Color.FromHex("#3E88F2");
             D_Send_Data.BackgroundColor = Color.FromHex("#3E88F2");
             var z = y.Length - 1;
@@ -77,6 +79,7 @@ namespace Elogstation
 
         private void Switch_Toggled_1(object sender, ToggledEventArgs e)
         {
+            /*
 		    if (e.Value)
 		    {
 			    bluetooth.Adapter.Enable();
@@ -84,18 +87,20 @@ namespace Elogstation
 		    else
 		    {
 			    bluetooth.Adapter.Disable();
-		    }
+		    }*/
 	    }
 
         private async void D_Logs_Clicked(object sender, EventArgs e)
         {
 		    Send_Data_Defi.IsVisible = false;
 		    Map_View_Defi.IsVisible = false;
-	    	Logs_Defi.IsVisible = true;
+            Device_Login_Defi.IsVisible = false;
+            Logs_Defi.IsVisible = true;
 		    D_Logs.BackgroundColor = Color.FromHex("#0d47a1");
 	    	D_Map_View.BackgroundColor = Color.FromHex("#3E88F2");
 		    D_Send_Data.BackgroundColor = Color.FromHex("#3E88F2");
-		    SentData.Text = "change gps co-ordinates to view value here";
+            D_Device_Login.BackgroundColor = Color.FromHex("#3E88F2");
+            SentData.Text = "change gps co-ordinates to view value here";
             try
             {
                 /*
@@ -142,21 +147,25 @@ namespace Elogstation
         {
 		    Map_View_Defi.IsVisible = false;
 		    Logs_Defi.IsVisible = false;
-		    Send_Data_Defi.IsVisible = true;
+            Device_Login_Defi.IsVisible = false;
+            Send_Data_Defi.IsVisible = true;
 		    D_Send_Data.BackgroundColor = Color.FromHex("#0d47a1");
 		    D_Map_View.BackgroundColor = Color.FromHex("#3E88F2");
 	    	D_Logs.BackgroundColor = Color.FromHex("#3E88F2");
-	    }
+            D_Device_Login.BackgroundColor = Color.FromHex("#3E88F2");
+        }
 
         private void D_Map_View_Clicked(object sender, EventArgs e)
 	    {
 		    Send_Data_Defi.IsVisible = false;
 		    Logs_Defi.IsVisible = false;
-		    Map_View_Defi.IsVisible = true;
+            Device_Login_Defi.IsVisible = false;
+            Map_View_Defi.IsVisible = true;
 		    D_Map_View.BackgroundColor = Color.FromHex("#0d47a1");
 		    D_Logs.BackgroundColor = Color.FromHex("#3E88F2");
 		    D_Send_Data.BackgroundColor = Color.FromHex("#3E88F2");
-	    }
+            D_Device_Login.BackgroundColor = Color.FromHex("#3E88F2");
+        }
         private async Task GPS_Api_CallAsync(string T, double Latitude, double Longitude, int User_id, int Company_id, int Rpm)
         {
             var json = JsonConvert.SerializeObject(new
@@ -187,6 +196,35 @@ namespace Elogstation
             {
                 CalledCounter.Text = "Something went wrong" + request.IsSuccessStatusCode.ToString();
             }
+        }
+
+        private async void D_Device_Login_ClickedAsync(object sender, EventArgs e)
+        {
+            Send_Data_Defi.IsVisible = false;
+            Map_View_Defi.IsVisible = false;
+            Logs_Defi.IsVisible = false;
+            Device_Login_Defi.IsVisible = true;
+            D_Device_Login.BackgroundColor = Color.FromHex("#0d47a1");
+            D_Logs.BackgroundColor = Color.FromHex("#3E88F2");
+            D_Send_Data.BackgroundColor = Color.FromHex("#3E88F2");
+            D_Map_View.BackgroundColor = Color.FromHex("#3E88F2");
+            HttpClient client = new HttpClient(new NativeMessageHandler())
+            {
+                MaxResponseContentBufferSize = 256000
+            };
+            var RestUrl = "http://localhost:89/2ndscreen";
+            var request = await client.PostAsync(RestUrl, null);
+            Test.Text = request.ToString();
+            /*var response = await request.Content.ReadAsStringAsync();
+            if (request.IsSuccessStatusCode)
+            {
+                Test.Text = response.ToString()+"\nTest APi Called for accounts to be logged into";
+            }
+            else
+            {
+                Test.Text = "Not working";
+            }*/
+
         }
     }
 }
