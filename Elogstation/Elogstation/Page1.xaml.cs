@@ -14,6 +14,7 @@ using Xamarin.Forms.Xaml;
 using Plugin.Connectivity;
 using Android.Content;
 using Android.Bluetooth;
+using Newtonsoft.Json.Linq;
 
 namespace Elogstation
 {
@@ -37,6 +38,7 @@ namespace Elogstation
             D_Logs.BackgroundColor = Color.FromHex("#3E88F2");
 			D_Map_View.BackgroundColor = Color.FromHex("#3E88F2");
             D_Send_Data.BackgroundColor = Color.FromHex("#3E88F2");
+            D_Device_Login_ClickedAsync(this,null);
             var z = y.Length - 1;
             y = y.Remove(z, 1);
             y = y.Substring(11);
@@ -208,23 +210,43 @@ namespace Elogstation
             D_Logs.BackgroundColor = Color.FromHex("#3E88F2");
             D_Send_Data.BackgroundColor = Color.FromHex("#3E88F2");
             D_Map_View.BackgroundColor = Color.FromHex("#3E88F2");
+            //Test API
             HttpClient client = new HttpClient(new NativeMessageHandler())
             {
                 MaxResponseContentBufferSize = 256000
             };
-            var RestUrl = "http://localhost:89/2ndscreen";
-            var request = await client.PostAsync(RestUrl, null);
-            Test.Text = request.ToString();
-            /*var response = await request.Content.ReadAsStringAsync();
-            if (request.IsSuccessStatusCode)
+            var RestUrl = "https://reqres.in/api/users?page=2";
+            var response = await client.GetAsync(RestUrl);
+            var content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
             {
-                Test.Text = response.ToString()+"\nTest APi Called for accounts to be logged into";
+                Column_Name_1.IsVisible = true;
+                Column_Device_2.IsVisible = true;
+                Column_Status_3.IsVisible = true;
+                Label Temp_Device_Entry;
+                Button Temp_Login_Entry;
+                Label Temp_Status_Entry;
+                JObject results = JObject.Parse(content);
+                for (int i=0; i<3; i++)
+                {
+                    Temp_Device_Entry = this.FindByName<Label>("Device_Entry_" + i);
+                    Temp_Device_Entry.IsVisible = true;
+                    Temp_Device_Entry.Text = results["data"][i]["id"].ToString();
+                    Temp_Login_Entry = this.FindByName<Button>("Login_Entry_" + i);
+                    Temp_Login_Entry.IsVisible = true;
+                    Temp_Login_Entry.Text = "Login";
+                    Temp_Status_Entry = this.FindByName<Label>("Status_Entry_" + i);
+                    Temp_Status_Entry.IsVisible = true;
+                    Temp_Status_Entry.Text = "Available";
+                    //Test_API.Text += results["data"][i]["id"];
+                }
+                //Test_API.Text = Items;
             }
             else
             {
-                Test.Text = "Not working";
-            }*/
-
+                Test_API.Text += "API Failed with the following error\n";
+                Test_API.Text += response;
+            }
         }
     }
 }
