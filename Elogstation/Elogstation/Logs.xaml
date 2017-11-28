@@ -2,6 +2,21 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Elogstation.Logs">
-    <ContentPage Title="LOG" />
+    <ContentPage Title="LOG">
+        <StackLayout>
+            <Grid HorizontalOptions="CenterAndExpand">
+                <Label x:Name="Error" IsVisible="False"></Label>
+                <Label x:Name="Id" Text="HI" Grid.Row="0" FontSize="9" Grid.ColumnSpan="6"/>
+                <Label x:Name="Name" Grid.Row="1" FontSize="9" Grid.ColumnSpan="6"/>
+                <Label x:Name="Current_Status" Grid.Row="2" Grid.Column="0" FontSize="9" Grid.ColumnSpan="6"/>
+                <Button x:Name="B_Off_Duty" Clicked="Off_Duty_Clicked" FontSize="Small" TextColor="White" Text="Off Duty" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Button x:Name="B_Sleeper" Clicked="Sleeper_Clicked" FontSize="Small" TextColor="White" Text="Sleeper" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"/>
+                <Button x:Name="B_Driving" Clicked="Driving_Clicked" FontSize="Small" TextColor="White" Text="Driving" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2"/>
+                <Button x:Name="B_Not_Driving" Clicked="Not_Driving_Clicked" FontSize="Small" TextColor="White" Text="Not Driving" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2"/>
+            </Grid>
+            <Button x:Name="Certify_Logs" Clicked="Certify_Logs_Clicked" Text="Certify Logs" BackgroundColor="LightBlue" TextColor="White" IsVisible="True"/>
+            <Button x:Name="Test" Clicked="Test_ClickedAsync" IsVisible="False"/>
+        </StackLayout>
+    </ContentPage>
     <ContentPage Title="EDIT" />
 </TabbedPage>

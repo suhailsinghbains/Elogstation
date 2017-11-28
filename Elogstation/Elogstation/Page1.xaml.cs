@@ -248,5 +248,20 @@ namespace Elogstation
                 Test_API.Text += response;
             }
         }
+
+        private async void Login_Entry_0_ClickedAsync(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Logs("Device_ID_0"));
+        }
+
+        private async void Login_Entry_1_ClickedAsync(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Logs("Device_ID_1"));
+        }
+
+        private async void Login_Entry_2_ClickedAsync(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Logs("Device_ID_2"));
+        }
     }
 }

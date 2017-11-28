@@ -17,13 +17,13 @@
                 <Label x:Name="Column_Device_2" IsVisible="False" Font="Bold,20" Text="Login" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
                 <Label x:Name="Column_Status_3" IsVisible="False" Font="Bold,20" Text="Status" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
                 <Label x:Name="Device_Entry_0" IsVisible="False" TextColor="Black" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
-                <Button x:Name="Login_Entry_0" IsVisible="False" BackgroundColor="LightBlue" TextColor="White" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"/>
+                <Button x:Name="Login_Entry_0" IsVisible="False" BackgroundColor="LightBlue" TextColor="White" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Clicked="Login_Entry_0_ClickedAsync"/>
                 <Label x:Name="Status_Entry_0" IsVisible="False" TextColor="Black" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
                 <Label x:Name="Device_Entry_1" IsVisible="False" TextColor="Black" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
-                <Button x:Name="Login_Entry_1" IsVisible="False" BackgroundColor="LightBlue" TextColor="White" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"/>
+                <Button x:Name="Login_Entry_1" IsVisible="False" BackgroundColor="LightBlue" TextColor="White" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Clicked="Login_Entry_1_ClickedAsync"/>
                 <Label x:Name="Status_Entry_1" IsVisible="False" TextColor="Black" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
                 <Label x:Name="Device_Entry_2" IsVisible="False" TextColor="Black" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
-                <Button x:Name="Login_Entry_2" IsVisible="False" BackgroundColor="LightBlue" TextColor="White" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"/>
+                <Button x:Name="Login_Entry_2" IsVisible="False" BackgroundColor="LightBlue" TextColor="White" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Clicked="Login_Entry_2_ClickedAsync"/>
                 <Label x:Name="Status_Entry_2" IsVisible="False" TextColor="Black" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
                 <Label x:Name="Test_API"></Label>
             </Grid>
