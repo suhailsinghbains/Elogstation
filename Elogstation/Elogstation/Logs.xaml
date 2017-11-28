@@ -4,7 +4,14 @@
              x:Class="Elogstation.Logs">
     <ContentPage Title="LOG">
         <StackLayout>
-            <Grid HorizontalOptions="CenterAndExpand">
+            <Grid x:Name="Certify_Condition" HorizontalOptions="CenterAndExpand" IsVisible="False">
+                <Label x:Name="Send_Logs" Text="Current Status : I hereby certify that my logs are accurate and correct" Grid.Row="0" Grid.ColumnSpan="8" FontSize="Small"/>
+                <Label x:Name="Date" Text="Date: Some Date" Grid.Row="1" Grid.ColumnSpan="8" FontSize="Small"/>
+                <Button x:Name="Accept" Clicked="Accept_Clicked" Text="Accept" BackgroundColor="Green" TextColor="White" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <Button x:Name="Reject" Clicked="Reject_Clicked" Text="Reject" BackgroundColor="Red" TextColor="White" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2"/>
+                <Label Grid.Row="3" IsVisible="False"/>
+            </Grid>
+            <Grid HorizontalOptions="CenterAndExpand" x:Name="Space_for_Certification">
                 <Label x:Name="Error" IsVisible="False"></Label>
                 <Label x:Name="Id" Text="HI" Grid.Row="0" FontSize="9" Grid.ColumnSpan="6"/>
                 <Label x:Name="Name" Grid.Row="1" FontSize="9" Grid.ColumnSpan="6"/>
@@ -14,8 +21,9 @@
                 <Button x:Name="B_Driving" Clicked="Driving_Clicked" FontSize="Small" TextColor="White" Text="Driving" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2"/>
                 <Button x:Name="B_Not_Driving" Clicked="Not_Driving_Clicked" FontSize="Small" TextColor="White" Text="Not Driving" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2"/>
             </Grid>
+            <!--GRAPH HERE-->
             <Button x:Name="Certify_Logs" Clicked="Certify_Logs_Clicked" Text="Certify Logs" BackgroundColor="LightBlue" TextColor="White" IsVisible="True"/>
-            <Button x:Name="Test" Clicked="Test_ClickedAsync" IsVisible="False"/>
+            <Button x:Name="Initial_API_Call" Clicked="Initial_API_CallAsync" IsVisible="False"/>
         </StackLayout>
     </ContentPage>
     <ContentPage Title="EDIT" />

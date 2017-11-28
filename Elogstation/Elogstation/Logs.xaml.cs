@@ -20,10 +20,10 @@ namespace Elogstation
         {
             InitializeComponent();
             this.Title = parameter;
-            Test_ClickedAsync(this, null);
+            Initial_API_CallAsync(this, null);
         }
 
-        private async void Test_ClickedAsync(object sender, EventArgs e)
+        private async void Initial_API_CallAsync(object sender, EventArgs e)
         {
             await API_CallAsync();
         }
@@ -92,7 +92,18 @@ namespace Elogstation
 
         private void Certify_Logs_Clicked(object sender, EventArgs e)
         {
-            Certify_Logs.Text = "HI";
+            Certify_Condition.IsVisible = true;
+            Space_for_Certification.IsVisible = false;
+        }
+
+        private void Accept_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Reject_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }
