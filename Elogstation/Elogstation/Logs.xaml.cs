@@ -10,17 +10,56 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static CoreFoundation.DispatchSource;
+using System.Threading;
 
 namespace Elogstation
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Logs : TabbedPage
     {
+        int Driving=0, Not_Driving=0, Sleeper=0, Off_Duty=0;
         public Logs(string parameter)
         {
             InitializeComponent();
             this.Title = parameter;
             Initial_API_CallAsync(this, null);
+            StartTimer();
+        }
+        
+        private void StartTimer()
+        {
+            Device.StartTimer(System.TimeSpan.FromSeconds(1), () =>
+            {
+                Device.BeginInvokeOnMainThread(Keep_Record);
+                return true;
+            });
+        }
+
+        private void Keep_Record()
+        {
+            Label Test = this.FindByName<Label>("Current_Status");
+            if (Test.Text == "Current Status: Driving")
+            {
+                Driving++;
+                SHOW_Driving.Text = Driving.ToString();
+            }
+            else if (Test.Text == "Current Status: Not Driving")
+            {
+                Not_Driving++;
+                SHOW_Not_Driving.Text = Not_Driving.ToString();
+            }
+            else if(Test.Text == "Current Status: Sleeper")
+            {
+                Sleeper++;
+                SHOW_Sleeper.Text =Sleeper.ToString(); 
+            }
+            else if(Test.Text == "Current Status: Off Duty")
+            {
+                Off_Duty++;
+                SHOW_Off_Duty.Text = Off_Duty.ToString();
+            }
+            SHOW_Total_Time.Text = "Total Time: " + (Driving + Not_Driving + Off_Duty + Sleeper).ToString() + "s";
         }
 
         private async void Initial_API_CallAsync(object sender, EventArgs e)
@@ -98,12 +137,13 @@ namespace Elogstation
 
         private void Accept_Clicked(object sender, EventArgs e)
         {
-
+            //Acceptance Api Call
         }
 
         private void Reject_Clicked(object sender, EventArgs e)
         {
-
+            Certify_Condition.IsVisible = false;
+            Space_for_Certification.IsVisible = true;
         }
     }
 }
