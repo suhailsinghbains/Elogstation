@@ -1,5 +1,4 @@
 ﻿using Android.Net.Wifi;
-using CoreLocation;
 using ModernHttpClient;
 using Newtonsoft.Json;
 using Plugin.Geolocator;

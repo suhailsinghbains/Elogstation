@@ -20,11 +20,11 @@
                 <Button x:Name="B_Sleeper" Clicked="Sleeper_Clicked" FontSize="Small" TextColor="White" Text="Sleeper" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"/>
                 <Button x:Name="B_Driving" Clicked="Driving_Clicked" FontSize="Small" TextColor="White" Text="Driving" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2"/>
                 <Button x:Name="B_Not_Driving" Clicked="Not_Driving_Clicked" FontSize="Small" TextColor="White" Text="Not Driving" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2"/>
-                <Label x:Name="SHOW_Off_Duty" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
-                <Label x:Name="SHOW_Sleeper" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"/>
-                <Label x:Name="SHOW_Driving" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2"/>
-                <Label x:Name="SHOW_Not_Driving" Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="2"/>
-                <Label x:Name="SHOW_Total_Time" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="8"/>
+                <Label x:Name="SHOW_Off_Duty" FontSize="9" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Label x:Name="SHOW_Sleeper" FontSize="9" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"/>
+                <Label x:Name="SHOW_Driving" FontSize="9" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2"/>
+                <Label x:Name="SHOW_Not_Driving" FontSize="9" Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="2"/>
+                <Label x:Name="SHOW_Total_Time" FontSize="9" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2"/>
             </Grid>
             <!--GRAPH HERE-->
             <Button x:Name="Certify_Logs" Clicked="Certify_Logs_Clicked" Text="Certify Logs" BackgroundColor="LightBlue" TextColor="White" IsVisible="True"/>
